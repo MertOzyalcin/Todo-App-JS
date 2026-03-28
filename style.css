@@ -259,24 +259,68 @@
       border-color: #1e1c17;
     }
 
-    /* ── Add task input area ────────────── */
-    .add-section {
-      border: 1px dashed var(--border);
-      border-radius: 2px;
-      padding: 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      margin-bottom: 48px;
-    }
+.add-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 48px;
+}
 
-    .add-section span {
-      display: block;
-      font-size: 22px;
-      color: var(--border);
-      margin-bottom: 6px;
-    }
+.add-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-input::placeholder { color: var(--muted); }
+.add-input:focus { border-color: var(--gold-dim); }
+
+.add-row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-select, .add-time {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 8px 10px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.add-select:focus,
+.add-time:focus { border-color: var(--gold-dim); color: var(--text); }
+
+.add-btn {
+  margin-left: auto;
+  background: var(--surface);
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px;
+  color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.add-btn:hover {
+  background: #1f1b10;
+  border-color: var(--gold);
+}
 
     /* ── Footer Stats ───────────────────── */
     .footer-stats {

@@ -12,10 +12,30 @@
 
   <!-- Header -->
   <header class="header">
-    <p class="header-meta">Friday · 27 March 2026</p>
+    <p class="header-meta"></p>
     <h1>My <em>Tasks</em></h1>
     <p class="header-sub">Click an item to mark it complete</p>
   </header>
+
+  <!-- Add new (decorative, no JS) -->
+  <div class="add-section">
+    <input type="text" class="add-input" placeholder="Task name..."/>
+    <div class="add-row">
+      <select class="add-select">
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Health">Health</option>
+        <option value="Home">Home</option>
+      </select>
+      <input type="time" class="add-time" value="09:00"/>
+      <select class="add-select">
+        <option value="high">● High</option>
+        <option value="mid">● Mid</option>
+        <option value="low">● Low</option>
+      </select>
+      <button class="add-btn">+ Add</button>
+    </div>
+  </div>
 
   <!-- Progress -->
   <div class="progress-section">
@@ -180,12 +200,6 @@
       </span>
     </label>
 
-  </div>
-
-  <!-- Add new (decorative, no JS) -->
-  <div class="add-section">
-    <span>&plus;</span>
-    Add a new task
   </div>
 
   <!-- Footer Stats -->

@@ -14,5 +14,4 @@ const monthName = localTime.toLocaleString(undefined, { month: 'long'});
 const dayName = localTime.toLocaleString(undefined, { weekday: 'long'});
 
 // Appear on user's screen
-headerMeta.innerHTML = `${dayName} · ${monthNum} ${monthName} ${yearNum}`;
-
+headerMeta.innerHTML = `${dayName} · ${dayNum} ${monthName} ${yearNum}`;
