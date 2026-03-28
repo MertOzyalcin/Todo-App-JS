@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TODO — Daily Planner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <p class="header-meta">Friday · 27 March 2026</p>
+    <h1>My <em>Tasks</em></h1>
+    <p class="header-sub">Click an item to mark it complete</p>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-section">
+    <div class="progress-label">
+      <span>Progress</span>
+      <span>Today's tasks</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <!-- Morning Tasks -->
+  <p class="section-label">Morning</p>
+  <div class="todo-list">
+
+    <input type="checkbox" id="t1" class="todo-check"/>
+    <label for="t1" class="todo-item">
+      <span class="priority priority-high"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Review Q1 financial report and prepare summary</span>
+        <span class="task-meta">
+          <span class="tag">Work</span>
+          <span class="time">09:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+    <input type="checkbox" id="t2" class="todo-check"/>
+    <label for="t2" class="todo-item">
+      <span class="priority priority-mid"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Reply to pending client emails</span>
+        <span class="task-meta">
+          <span class="tag">Work</span>
+          <span class="time">10:30</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+    <input type="checkbox" id="t3" class="todo-check"/>
+    <label for="t3" class="todo-item">
+      <span class="priority priority-low"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">30-minute morning run</span>
+        <span class="task-meta">
+          <span class="tag">Health</span>
+          <span class="time">07:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+  </div>
+
+  <!-- Afternoon Tasks -->
+  <p class="section-label">Afternoon</p>
+  <div class="todo-list">
+
+    <input type="checkbox" id="t4" class="todo-check"/>
+    <label for="t4" class="todo-item">
+      <span class="priority priority-high"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Team standup and sprint planning session</span>
+        <span class="task-meta">
+          <span class="tag">Work</span>
+          <span class="time">13:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+    <input type="checkbox" id="t5" class="todo-check"/>
+    <label for="t5" class="todo-item">
+      <span class="priority priority-mid"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Pick up groceries — bread, eggs, olive oil</span>
+        <span class="task-meta">
+          <span class="tag">Personal</span>
+          <span class="time">15:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+    <input type="checkbox" id="t6" class="todo-check"/>
+    <label for="t6" class="todo-item">
+      <span class="priority priority-low"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Read two chapters of current book</span>
+        <span class="task-meta">
+          <span class="tag">Personal</span>
+          <span class="time">17:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+  </div>
+
+  <!-- Evening Tasks -->
+  <p class="section-label">Evening</p>
+  <div class="todo-list">
+
+    <input type="checkbox" id="t7" class="todo-check"/>
+    <label for="t7" class="todo-item">
+      <span class="priority priority-mid"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Cook dinner and meal-prep for the weekend</span>
+        <span class="task-meta">
+          <span class="tag">Home</span>
+          <span class="time">19:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+    <input type="checkbox" id="t8" class="todo-check"/>
+    <label for="t8" class="todo-item">
+      <span class="priority priority-low"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">Plan weekend trip itinerary</span>
+        <span class="task-meta">
+          <span class="tag">Personal</span>
+          <span class="time">21:00</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    </label>
+
+  </div>
+
+  <!-- Add new (decorative, no JS) -->
+  <div class="add-section">
+    <span>&plus;</span>
+    Add a new task
+  </div>
+
+  <!-- Footer Stats -->
+  <div class="footer-stats">
+    <div class="stat">
+      <span class="stat-value">8</span>
+      <span class="stat-label">Total Tasks</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">3</span>
+      <span class="stat-label">High Priority</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">Mar</span>
+      <span class="stat-label">Month</span>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</div>
+</body>
+</html>
