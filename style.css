@@ -266,6 +266,10 @@
   margin-bottom: 48px;
 }
 
+.add-select.priority {
+  min-width: 100px;
+}
+
 .add-input {
   width: 100%;
   background: var(--surface);
@@ -291,13 +295,18 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 2px;
-  color: var(--muted);
+  color: var(--text);
   font-family: 'DM Mono', monospace;
   font-size: 11px;
   padding: 8px 10px;
   outline: none;
   cursor: pointer;
   transition: border-color 0.2s;
+}
+
+.add-select option {
+  color: var(--text);
+  background: var(--surface);
 }
 
 .add-select:focus,
@@ -375,6 +384,12 @@
       padding: 4px 8px;
       cursor: pointer;
       transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .btn-save:hover {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+      background: #1f1b10;
     }
 
     .btn-edit:hover  { color: var(--gold); border-color: var(--gold-dim); background: #1f1b10; }

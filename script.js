@@ -73,4 +73,115 @@ addButton.addEventListener("click", () => {
         todoList[2].appendChild(input);
         todoList[2].appendChild(label); 
     }
+    updateFooter();
 });
+
+// -------- DELETE & EDİT & SAVE ---------
+document.addEventListener("click", (event) => {
+  // DELETE
+  if (event.target.matches(".btn-action.btn-delete")) {
+    const label = event.target.closest(".todo-item");
+    const input = label.previousElementSibling;
+
+    label.remove();
+    input.remove();
+    updateProgress();
+  }
+  
+// EDIT
+  if (event.target.matches(".btn-action.btn-edit")) {
+    const label = event.target.closest(".todo-item");
+    const listText = label.querySelector(".task-text");
+    const priority = label.querySelector(".priority");
+    const tag = label.querySelector(".tag");
+    const time = label.querySelector(".time");
+
+    label.innerHTML = `
+      <div class="add-section">
+        <input type="text" class="add-input" placeholder="Task name..." contenteditable="true" value="${listText.textContent}">
+        <div class="add-row">
+          <select class="add-select subject">
+            <option value="Work" ${tag.textContent === "Work" ? "selected" : ""}>Work</option>
+            <option value="Personal" ${tag.textContent === "Personal" ? "selected" : ""}>Personal</option>
+            <option value="Health" ${tag.textContent === "Health" ? "selected" : ""}>Health</option>
+            <option value="Home" ${tag.textContent === "Home" ? "selected" : ""}>Home</option>
+          </select>
+          <input type="time" class="add-time" value="${time.textContent}"/>
+          <select class="add-select priority-select">
+            <option value="high" ${priority.classList.contains("priority-high") ? "selected" : ""}>● High</option>
+            <option value="mid" ${priority.classList.contains("priority-mid") ? "selected" : ""}>● Mid</option>
+            <option value="low" ${priority.classList.contains("priority-low") ? "selected" : ""}>● Low</option>
+          </select>
+          <button class="btn-action btn-save">save</button>
+        </div>
+      </div>  
+    `
+    updateFooter();
+  }
+
+  // SAVE
+  if (event.target.matches(".btn-action.btn-save")) {
+    const label = event.target.closest(".todo-item");
+    const input = label.previousElementSibling;
+    const listText = label.querySelector(".add-input").value;
+    const priority = label.querySelector(".priority-select").value; 
+    const tag = label.querySelector(".add-select.subject").value;
+    const time = label.querySelector(".add-time").value;
+    const timeNum = parseFloat(time);
+
+    label.innerHTML = `
+      <span class="priority priority-${priority}"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">${listText}</span>
+        <span class="task-meta">
+          <span class="tag">${tag}</span>
+          <span class="time">${time}</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    `;
+
+    const todoLists = document.querySelectorAll(".todo-list");
+    if (timeNum < 13.00 ) {
+      todoLists[0].appendChild(input);
+      todoLists[0].appendChild(label);
+    }
+    else if (timeNum < 18.00) {
+      todoLists[1].appendChild(input);
+      todoLists[1].appendChild(label);
+    }
+    else {
+      todoLists[2].appendChild(input);
+      todoLists[2].appendChild(label); 
+    }
+  }
+});
+
+// ----------- PROGRESS BAR -------------
+const progressFill = document.querySelector(".progress-fill");
+
+function updateProgress() {
+  const total = document.querySelectorAll(".todo-check").length;
+  const checked = document.querySelectorAll(".todo-check:checked").length;
+  const perc = (checked / total) * 100;
+  progressFill.style.width = perc + "%";
+}
+
+document.addEventListener("change", (event) => {
+  if (event.target.matches(".todo-check")) {
+    updateProgress();
+  }
+});
+
+// -------- FOOTER VALUES ----------
+function updateFooter() {
+  const totalTODOS = document.querySelectorAll(".todo-check").length;
+  const highPriority = document.querySelectorAll(".priority-high").length;
+  
+  document.querySelectorAll(".stat-value")[0].innerHTML = totalTODOS;
+  document.querySelectorAll(".stat-value")[1].innerHTML = highPriority;
+}
