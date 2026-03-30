@@ -1,5 +1,6 @@
 // header-meta GET Time Zone
 const headerMeta = document.querySelector(".header-meta");
+const statMonth = document.querySelectorAll(".stat-value");
 
 // ------------- TAKING DATE --------------
 // Taking Local Time with Temporal()
@@ -15,6 +16,7 @@ const dayName = localTime.toLocaleString(undefined, { weekday: 'long'});
 
 // Appear on user's screen
 headerMeta.innerHTML = `${dayName} · ${dayNum} ${monthName} ${yearNum}`;
+statMonth[2].innerHTML = `${monthName}`;
 
 // -------------- CREATING NEW TODO -------------------
 const inputValue = document.querySelector(".add-input");
@@ -74,6 +76,7 @@ addButton.addEventListener("click", () => {
         todoList[2].appendChild(label); 
     }
     updateFooter();
+    updateProgress();
 });
 
 // -------- DELETE & EDİT & SAVE ---------
@@ -158,6 +161,8 @@ document.addEventListener("click", (event) => {
       todoLists[2].appendChild(input);
       todoLists[2].appendChild(label); 
     }
+
+    updateFooter();
   }
 });
 
@@ -169,6 +174,10 @@ function updateProgress() {
   const checked = document.querySelectorAll(".todo-check:checked").length;
   const perc = (checked / total) * 100;
   progressFill.style.width = perc + "%";
+
+  if (total === 0) {
+    progressFill.style.width = "0%";
+  }
 }
 
 document.addEventListener("change", (event) => {
