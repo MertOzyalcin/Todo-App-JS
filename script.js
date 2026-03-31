@@ -77,6 +77,7 @@ addButton.addEventListener("click", () => {
     }
     updateFooter();
     updateProgress();
+    saveTodosToLocal(); // Added saving logic
 });
 
 // -------- DELETE & EDİT & SAVE ---------
@@ -89,6 +90,8 @@ document.addEventListener("click", (event) => {
     label.remove();
     input.remove();
     updateProgress();
+    updateFooter();
+    saveTodosToLocal(); // Added saving logic
   }
   
 // EDIT
@@ -163,6 +166,7 @@ document.addEventListener("click", (event) => {
     }
 
     updateFooter();
+    saveTodosToLocal(); // Added saving logic
   }
 });
 
@@ -183,6 +187,7 @@ function updateProgress() {
 document.addEventListener("change", (event) => {
   if (event.target.matches(".todo-check")) {
     updateProgress();
+    saveTodosToLocal(); // Added saving logic
   }
 });
 
@@ -194,3 +199,97 @@ function updateFooter() {
   document.querySelectorAll(".stat-value")[0].innerHTML = totalTODOS;
   document.querySelectorAll(".stat-value")[1].innerHTML = highPriority;
 }
+
+// ------ Local Storage --------
+
+function saveTodosToLocal() {
+  const todos = [];
+  const todoItems = document.querySelectorAll(".todo-item");
+  
+  todoItems.forEach((label) => {
+    // Check if task is currently not in edit mode
+    if (label.querySelector(".task-text")) {
+      const input = label.previousElementSibling;
+      const priorityClass = label.querySelector(".priority").className;
+      let priorityValue = "low";
+      if (priorityClass.includes("high")) priorityValue = "high";
+      else if (priorityClass.includes("mid")) priorityValue = "mid";
+
+      todos.push({
+        id: input.id,
+        text: label.querySelector(".task-text").textContent,
+        subject: label.querySelector(".tag").textContent,
+        time: label.querySelector(".time").textContent,
+        priority: priorityValue,
+        checked: input.checked
+      });
+    }
+  });
+  
+  localStorage.setItem("myTodos", JSON.stringify(todos));
+}
+
+function loadTodosFromLocal() {
+  const storedTodos = JSON.parse(localStorage.getItem("myTodos"));
+  if (!storedTodos) return;
+  
+  let highestIdNum = -1;
+
+  storedTodos.forEach((todo) => {
+    // Track the highest ID so `count` continues correctly when adding new tasks
+    const currentIdNum = parseInt(todo.id.replace('t', ''));
+    if (currentIdNum > highestIdNum) {
+      highestIdNum = currentIdNum;
+    }
+
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.id = todo.id;
+    input.className = "todo-check";
+    input.checked = todo.checked;
+
+    const label = document.createElement("label");
+    label.htmlFor = todo.id;
+    label.className = "todo-item";
+    label.innerHTML = `
+      <span class="priority priority-${todo.priority}"></span>
+      <span class="box"></span>
+      <span class="body">
+        <span class="task-text">${todo.text}</span>
+        <span class="task-meta">
+          <span class="tag">${todo.subject}</span>
+          <span class="time">${todo.time}</span>
+        </span>
+      </span>
+      <span class="actions">
+        <button class="btn-action btn-edit">edit</button>
+        <button class="btn-action btn-delete">del</button>
+      </span>
+    `;
+
+    const todoList = document.querySelectorAll(".todo-list");
+    const numTime = parseFloat(todo.time);
+
+    if (numTime < 13.00 ) {
+      todoList[0].appendChild(input);
+      todoList[0].appendChild(label);
+    }
+    else if (numTime < 18.00) {
+      todoList[1].appendChild(input);
+      todoList[1].appendChild(label);
+    }
+    else {
+      todoList[2].appendChild(input);
+      todoList[2].appendChild(label); 
+    }
+  });
+
+  // Ensure new tasks get a higher ID than the stored ones
+  count = highestIdNum + 1;
+  
+  updateFooter();
+  updateProgress();
+}
+
+// Call on load
+loadTodosFromLocal();
